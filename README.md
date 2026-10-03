@@ -1,114 +1,93 @@
 # Project Starter Kit
 
-새 프로젝트를 만들 때 필요한 파일을 골라 복사하는 범용 협업 템플릿 모음입니다. 특정 언어·프레임워크·라벨 체계에 종속되지 않습니다.
-
-템플릿 원본은 모두 `templates/common/`에 보관합니다. 이 저장소 루트에는 적용용 `AGENTS.md`, `CLAUDE.md`, `.github/`를 두지 않습니다.
+개인 프로젝트를 기본으로, 필요한 에이전트 지침과 GitHub 양식을 골라 적용하는 템플릿 모음입니다. 템플릿 원본은 `templates/common/`에 보관하고, 이 저장소 루트에는 적용용 `AGENTS.md`, `CLAUDE.md`, `.github/`를 두지 않습니다.
 
 ## 구성
 
 | 템플릿 | 용도 |
 | --- | --- |
-| [AGENTS.md](templates/common/AGENTS.md) | 작업·검증·Git·이슈·PR 작성 공통 지침 |
-| [CLAUDE.md](templates/common/CLAUDE.md) | @AGENTS.md로 공통 지침 가져오기와 Claude 전용 지침 확장 위치 |
-| [결함 보고](templates/common/.github/ISSUE_TEMPLATE/bug.yml) | 현재·기대 동작, 재현 방법, 환경, 선택 흐름도 |
-| [기능·개선 제안](templates/common/.github/ISSUE_TEMPLATE/change.yml) | 현재·목표 상태, 제안 방법과 범위, 완료 조건, 선택 흐름도 |
-| [부모 이슈](templates/common/.github/ISSUE_TEMPLATE/parent.yml) | 여러 자식 이슈로 나누는 큰 작업의 범위·진행 순서·공통 완료 조건 |
+| [AGENTS.md](templates/common/AGENTS.md) | 프로젝트 설정, 작업·문체·검증·Git·이슈·PR 규칙 |
+| [CLAUDE.md](templates/common/CLAUDE.md) | 공통 지침을 가져오는 `@AGENTS.md` |
+| [.gitattributes](templates/common/.gitattributes) | 선택적으로 도입하는 텍스트 줄바꿈 규칙 |
+| [결함 보고](templates/common/.github/ISSUE_TEMPLATE/bug.yml) | 현재·기대 동작, 재현 근거와 환경 |
+| [기능·개선 제안](templates/common/.github/ISSUE_TEMPLATE/change.yml) | 현재·목표 상태, 최소 변경과 완료 조건 |
+| [부모 이슈](templates/common/.github/ISSUE_TEMPLATE/parent.yml) | 직접 자식의 결과·선행 관계·통합 완료 조건 |
 | [질문·사용 문의](templates/common/.github/ISSUE_TEMPLATE/question.yml) | 사용 상황과 확인한 자료 |
-| [이슈 선택 설정](templates/common/.github/ISSUE_TEMPLATE/config.yml) | 빈 이슈 대신 양식 선택, 외부 문의 경로 예시 |
-| [PR 템플릿](templates/common/.github/pull_request_template.md) | 요약, 변경, 완료 조건, 검증, 영향과 남은 문제 |
+| [이슈 선택 설정](templates/common/.github/ISSUE_TEMPLATE/config.yml) | 빈 이슈 허용 여부와 외부 문의 경로 |
+| [PR 템플릿](templates/common/.github/pull_request_template.md) | 요약·변경·완료 조건·검증·남은 문제 |
 
-## 가져다 쓰는 방법
+## 필요한 구성 선택
 
-1. 이 저장소를 내려받습니다.
-2. `templates/common/` 안의 필요한 파일·폴더를 **대상 프로젝트 루트**에 복사합니다. `templates/common` 폴더 자체를 복사하는 것이 아닙니다.
-3. 기존 `AGENTS.md`, `CLAUDE.md`, `.github/`가 있다면 덮어쓰지 말고 필요한 내용만 병합합니다.
-4. 프로젝트의 설치·실행·검사 명령과 구조를 `AGENTS.md`에 추가하거나 기존 README·기여 문서를 연결합니다.
-5. 대상 프로젝트의 기본 브랜치에 반영한 뒤 새 이슈 선택 화면과 새 PR 본문을 확인합니다.
+별도 프로필 파일이나 생성기 없이 아래 기준으로 선택합니다. 기존 팀 규칙이 있으면 해당 규칙을 보존합니다.
 
-복사한 프로젝트의 구성 예시:
+| 용도 | 복사할 파일 |
+| --- | --- |
+| 에이전트 작업 지침 | `AGENTS.md`, `CLAUDE.md`를 함께 복사 |
+| 기본 GitHub 협업 | `bug.yml`, `change.yml`, `config.yml`, PR 템플릿 |
+| 여러 구현 이슈를 묶는 작업 | 기본 구성에 `parent.yml` 추가 |
+| 저장소에서 사용 문의 접수 | `question.yml` 추가 |
+| 줄바꿈 규칙 통일 | 기존 설정을 확인한 뒤 `.gitattributes` 병합 |
+
+GitHub 양식만 필요하면 선택한 `.github/` 파일만 복사해도 됩니다. 질문을 외부에서 받으려면 `config.yml`의 `contact_links` 예시를 실제 경로로 바꿉니다. 빈 이슈를 허용하려면 `blank_issues_enabled`를 `true`로 바꿉니다.
+
+## 처음 적용
+
+1. 사용할 원본의 tag 또는 commit을 정합니다.
+2. 선택한 파일을 **대상 프로젝트 루트**에 같은 상대 경로로 복사합니다. `templates/common` 폴더 자체를 옮기는 것이 아닙니다. 숨김 파일·폴더도 포함합니다.
+3. 대상에 이미 있는 파일은 내용을 비교해 병합합니다. 특히 기존 `AGENTS.md`, GitHub 설정과 줄바꿈 규칙을 일괄 덮어쓰지 않습니다.
+4. `AGENTS.md`의 `미설정`을 실제 값·문서 링크 또는 `해당 없음`으로 채웁니다. 명령은 프로젝트 manifest·스크립트·README에서 확인하고 실행 위치·전제 조건을 적습니다.
+5. `AGENTS.md`의 언어·브랜치·문체 기본값을 확인합니다. 바꾸는 항목은 관련 양식도 함께 맞춥니다.
+6. 원본 저장소·tag 또는 commit·선택한 파일을 `AGENTS.md`의 프로젝트 설정 표에 적습니다. GitHub 양식만 복사하면 README 등 기존 문서 한 곳에 기록합니다.
+7. diff를 확인하고 프로젝트의 필요한 검사를 수행합니다. 기본 브랜치 반영 후 실제 이슈 선택 화면과 PR 본문도 확인합니다.
 
 ```text
 my-project/
 ├── AGENTS.md
 ├── CLAUDE.md
+├── .gitattributes                  # 선택
 └── .github/
     ├── ISSUE_TEMPLATE/
     │   ├── bug.yml
     │   ├── change.yml
-    │   ├── parent.yml
-    │   ├── question.yml
+    │   ├── parent.yml             # 선택
+    │   ├── question.yml           # 선택
     │   └── config.yml
     └── pull_request_template.md
 ```
 
-- 공통 규칙은 `AGENTS.md`에서 관리하고 `CLAUDE.md` 안의 `@AGENTS.md`로 가져옵니다. 두 파일을 함께 복사합니다.
-- 이슈·PR 양식만 필요하면 `.github/`만 복사해도 됩니다.
-- `.github`는 숨김 폴더일 수 있으므로 복사할 때 포함 여부를 확인합니다.
-- 이 저장소를 복제하는 것만으로는 양식이 적용되지 않습니다. 사용할 파일을 대상 프로젝트의 위 경로에 배치해야 합니다.
-- 복사본은 자동 동기화되지 않습니다. 원본 업데이트 시 diff를 비교해 프로젝트별 수정을 보존하면서 필요한 변경만 반영합니다.
+이 저장소를 복제하거나 GitHub의 "Use this template"로 생성해도 위 적용 단계가 필요합니다. 템플릿 폴더는 그대로 복제되며 GitHub가 그 안의 양식을 자동 적용하지 않습니다.
 
-## 작성 원칙
+## 원본을 갱신할 때
 
-- 이슈·PR 최상단에 짧은 요약 불릿 2~3개 배치
-- 한 줄에 한 가지 핵심, 명사형·단답형 종결
-- 요약에서 `~합니다`, `~습니다`, `~입니다`, `~한다` 등 서술형 종결 생략
-- 결함 제목은 대상과 증상, 개선 제목은 원하는 변경, PR 제목은 실제 변경 결과 표현
-- 이슈는 현재 상태(AS-IS)와 목표 상태(TO-BE)를 구분하고 완료 조건에는 확인할 결과 기재
-- 구현 상세·긴 경로·로그는 하단 본문에 기재
-- 목록 안의 `#번호`는 GitHub가 이슈 제목·상태로 펼쳐 한 줄이 길어지므로, 목록 한 줄에는 번호 하나만 쓰고 여러 번호·관계는 표나 문장으로 작성
-- 흐름·의존 관계가 복잡할 때만 Mermaid 흐름도 추가, 짧은 흐름은 `A → B → C` 한 줄로 충분
-- UI·CLI·API 작성에 동일한 원칙 적용
+복사본은 자동 동기화되지 않습니다. 기록한 이전 원본과 새 원본의 차이를 먼저 보고, 대상 프로젝트에 필요한 변경만 기존 수정과 병합합니다. 프로젝트 설정값·직접 추가한 규칙·뺀 선택 항목을 보존하고 적용 기록과 검증 결과를 갱신합니다.
 
-| 구분 | 제목 예시 |
-| --- | --- |
-| 결함 | 설정 저장 후 언어 선택 초기화 |
-| 개선 | 검색 결과 정렬 옵션 추가 |
-| 부모 | [부모] 결제 흐름 개편 |
-| 질문 | 프로젝트별 설정의 적용 우선순위 문의 |
-| PR | fix: 저장한 언어 설정 유지 |
+이전 원본을 모르면 그 상태를 기록하고 현재 파일별로 비교합니다. 같은 버전을 다시 검토할 때 중복 항목을 추가하지 않습니다. 자동 병합·배포·원격 저장소 설정 변경 도구는 포함하지 않습니다.
 
-PR 요약 예시:
+## 문서 읽기와 문체
 
-```markdown
-## 요약
+- 작업·검증·Git·이슈·PR 규칙은 `AGENTS.md` 한 곳에 둡니다. 프로젝트 동작에 필요한 추가 문서만 일반 링크로 연결합니다.
+- `CLAUDE.md`는 `@AGENTS.md`로 공통 규칙을 가져옵니다. 규칙을 두 파일에 중복 작성하지 않습니다. [Claude import 문서](https://code.claude.com/docs/en/memory#import-additional-files)
+- 기본 언어는 한국어, 새 브랜치는 `feature/`, PR·커밋 제목은 Conventional Commit 형식입니다. 이 값은 팀 취향이며 기술 스택과 무관한 필수 규격은 아닙니다.
+- 앰대시·엔대시를 피하는 문체 기준과 예외는 `AGENTS.md` 한 곳에서 관리합니다.
+- 제품 동작의 기준은 담당 코드·문서에 둡니다. README는 사람용 개요·설치·사용 방법을 담당합니다.
 
-- 저장한 언어 설정의 재접속 시 복원
-- 설정 누락 시 기본 언어 적용
-```
+## 작업 분할과 완료 조건
 
-## 부모 이슈와 자식 작업
+독립적으로 끝낼 결과는 구현 이슈로 나누고 공통 목표가 있으면 부모로 묶습니다. 하나의 완료 조건을 여러 PR로 구현할 때는 같은 이슈에서 진행 표를 관리합니다. PR 개수만으로 부모를 만들지 않습니다.
 
-여러 PR로 나누는 큰 작업은 부모 이슈 양식으로 범위와 진행 순서를 관리합니다. 부모는 자체 구현 PR을 갖지 않고, 하나의 PR로 끝나는 작업에는 부모를 만들지 않습니다.
+중간 PR은 `Refs`, 전체 완료 조건을 충족하는 최종 PR은 `Closes`를 사용합니다. 부모는 자식의 종료 사유와 통합 결과까지 확인하고 따로 닫습니다. 관련 규칙은 [AGENTS.md](templates/common/AGENTS.md)를 따릅니다. [GitHub 이슈 연결 규칙](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue)
 
-- 자식 이슈는 GitHub sub-issue로 연결하고, 먼저 끝나야 하는 자식은 blocked-by로 연결합니다. 본문의 자식 표는 읽기용 보조 기록입니다.
-- 자식 지도는 표로 작성합니다. 같은 단계는 병렬로 진행하고, 담당 범위는 한 줄로 쓴 뒤 세부 내용은 자식 이슈에 둡니다.
-- 선행 관계가 여러 갈래로 얽히면 `흐름도 (선택)` 칸에 Mermaid 코드를 넣습니다. 이슈 본문에서 도식으로 렌더링됩니다.
+PR에는 기본 필수 항목 6개만 표시합니다. 분할·호환성·측정·독립 검토·base 변경의 상세 내용은 해당할 때 기존 항목에 추가합니다. 필수 항목을 바꾸면 AGENTS.md와 PR 템플릿도 함께 맞춥니다.
 
-```markdown
-| 단계 | 자식 | 담당 범위 | 선행 |
-| :-: | --- | --- | --- |
-| 1 | #12 | 결제 검증 규칙 공통화 | 없음 |
-| 2 | #13 | 카드 결제 단계 적용 | #12 |
-| 2 | #14 | 계좌이체 단계 적용 | #12 |
+## 템플릿 수정 시 확인
 
-같은 단계는 병렬 진행.
-```
+- 변경한 문서의 링크와 양식 항목이 서로 맞는지 확인합니다.
+- diff를 확인하고, 대상 저장소에 적용한 뒤 실제 이슈 선택 화면과 PR 본문을 확인합니다. [GitHub 폼 스키마](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/syntax-for-githubs-form-schema)
 
-```mermaid
-flowchart LR
-  A["#12 검증 규칙 공통화"] --> B["#13 카드 결제"]
-  A --> C["#14 계좌이체"]
-```
+## 줄바꿈
 
-## 프로젝트별 조정
+유지보수 저장소 자체는 LF를 사용하고, 복사용 `.gitattributes`는 `text=auto`만 기본으로 둡니다. 프로젝트에 필요한 LF·CRLF 규칙은 주석 예시에서 선택합니다. Windows 배치 파일(`.bat`, `.cmd`)과 기존 예외 규칙도 확인합니다. [GitHub 줄바꿈 가이드](https://docs.github.com/en/get-started/git-basics/configuring-git-to-handle-line-endings)
 
-- 기본 문안은 한국어입니다. 팀의 작성 언어에 맞게 수정할 수 있습니다.
-- 라벨·담당자·우선순위는 자동 지정하지 않습니다. 필요하면 대상 저장소에 실제 존재하는 값으로 설정합니다.
-- 자유 양식 이슈도 허용하려면 `config.yml`의 `blank_issues_enabled`를 `true`로 변경합니다.
-- 질문을 Discussions 등으로 받는 프로젝트는 질문 폼을 제외하고 `config.yml`의 `contact_links` 예시로 해당 경로를 안내할 수 있습니다.
-- 여러 PR로 나누는 큰 작업이 드문 프로젝트는 `parent.yml`을 빼도 됩니다. 부모 제목 접두어 `[부모]`는 팀 관례에 맞게 바꿀 수 있습니다.
-- `흐름도 (선택)` 칸은 선택 항목입니다. 쓰지 않는 팀은 각 폼에서 해당 항목을 삭제해도 됩니다.
-- PR 항목이 과하면 프로젝트에 맞게 줄이되, 요약·변경·검증은 유지하는 것을 권장합니다.
-- 이슈 폼은 필수 입력 여부를 검사하며, 불릿 수와 문체를 자동 검증하지는 않습니다. PR 템플릿과 에이전트 지침도 별도 검사 도구를 포함하지 않습니다.
+기존 저장소에 줄바꿈 규칙을 도입하면 정규화 diff가 생길 수 있습니다. 진행 중인 변경을 먼저 보존하고 작업 트리가 깨끗한지 확인한 뒤 `git add --renormalize .`의 결과를 검토해 정규화 변경을 별도 커밋으로 분리합니다.
 
-이 세트에는 특정 프로젝트의 배포 절차, 검사 명령, 라벨 정책, 강제 머지 규칙이나 CI 워크플로를 포함하지 않습니다.
+공개 배포 전에는 코드와 복사되는 템플릿의 라이선스를 정해야 합니다. 이 세트는 대상 프로젝트의 라이선스를 선택하거나 바꾸지 않습니다.

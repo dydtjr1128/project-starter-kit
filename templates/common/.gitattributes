@@ -1,0 +1,8 @@
+# 기존 설정이 있으면 필요한 규칙만 병합한다.
+* text=auto
+
+# 필요한 프로젝트에서 아래 예시를 선택해 주석을 해제한다.
+# *.md text eol=lf
+# *.yml text eol=lf
+# *.bat text eol=crlf
+# *.cmd text eol=crlf
