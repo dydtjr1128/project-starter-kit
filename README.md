@@ -75,7 +75,7 @@ my-project/
 
 독립적으로 끝낼 결과는 구현 이슈로 나누고 공통 목표가 있으면 부모로 묶습니다. 하나의 완료 조건을 여러 PR로 구현할 때는 같은 이슈에서 진행 표를 관리합니다. PR 개수만으로 부모를 만들지 않습니다.
 
-중간 PR은 `Refs`, 전체 완료 조건을 충족하는 최종 PR은 `Closes`를 사용합니다. 부모는 자식의 종료 사유와 통합 결과까지 확인하고 따로 닫습니다. 관련 규칙은 [AGENTS.md](templates/common/AGENTS.md)를 따릅니다. [GitHub 이슈 연결 규칙](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue)
+중간 PR은 `Refs`, 전체 완료 조건을 충족해 기본 브랜치로 머지하는 최종 PR은 본문과 최종 squash/merge 커밋에 같은 `Closes`를 사용합니다. 부모는 자식의 종료 사유와 통합 결과까지 확인하고 따로 닫습니다. 관련 규칙은 [AGENTS.md](templates/common/AGENTS.md)를 따릅니다. [GitHub 이슈 연결 규칙](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue)
 
 PR에는 기본 필수 항목 6개만 표시합니다. 분할·호환성·측정·독립 검토·base 변경의 상세 내용은 해당할 때 기존 항목에 추가합니다. 필수 항목을 바꾸면 AGENTS.md와 PR 템플릿도 함께 맞춥니다.
 
